@@ -1,5 +1,12 @@
 class NodoAVL:
+    """
+    Nodo de un árbol AVL. Almacena la clave, el objeto asociado, referencias a los hijos
+    izquierdo y derecho, y la altura del nodo.
+    """
     def __init__(self, clave, objeto):
+        """
+        Inicializa un nodo AVL con la clave y el objeto proporcionados.
+        """
         self.clave = clave
         self.objeto = objeto
         self.izquierda = None
@@ -7,16 +14,32 @@ class NodoAVL:
         self.altura = 1
 
 class ArbolAVL:
+    """
+    Implementación de un árbol AVL (árbol binario de búsqueda auto-balanceado).
+    Permite inserción, búsqueda, eliminación y recorrido inorden de elementos.
+    """
     def __init__(self):
+        """
+        Inicializa un árbol AVL vacío.
+        """
         self.raiz = None
 
     def _altura(self, nodo):
+        """
+        Retorna la altura de un nodo. Si el nodo es None, retorna 0.
+        """
         return nodo.altura if nodo else 0
 
     def _factor_balanceo(self, nodo):
+        """
+        Calcula y retorna el factor de balanceo de un nodo.
+        """
         return self._altura(nodo.izquierda) - self._altura(nodo.derecha)
 
     def _rotar_derecha(self, y):
+        """
+        Realiza una rotación simple a la derecha sobre el nodo y.
+        """
         x = y.izquierda
         T2 = x.derecha
         x.derecha = y
@@ -26,6 +49,9 @@ class ArbolAVL:
         return x
 
     def _rotar_izquierda(self, x):
+        """
+        Realiza una rotación simple a la izquierda sobre el nodo x.
+        """
         y = x.derecha
         T2 = y.izquierda
         y.izquierda = x
@@ -35,9 +61,15 @@ class ArbolAVL:
         return y
 
     def insertar(self, clave, objeto):
+        """
+        Inserta un nuevo nodo con la clave y el objeto dados en el árbol AVL.
+        """
         self.raiz = self._insertar(self.raiz, clave, objeto)
 
     def _insertar(self, nodo, clave, objeto):
+        """
+        Inserta recursivamente un nodo en el subárbol dado y realiza las rotaciones necesarias.
+        """
         if not nodo:
             return NodoAVL(clave, objeto)
 
@@ -64,9 +96,15 @@ class ArbolAVL:
         return nodo
 
     def buscar(self, clave):
+        """
+        Busca y retorna el objeto asociado a la clave dada. Si no existe, retorna None.
+        """
         return self._buscar(self.raiz, clave)
 
     def _buscar(self, nodo, clave):
+        """
+        Busca recursivamente la clave en el subárbol dado.
+        """
         if not nodo:
             return None
         if clave == nodo.clave:
@@ -77,9 +115,15 @@ class ArbolAVL:
             return self._buscar(nodo.derecha, clave)
 
     def eliminar(self, clave):
+        """
+        Elimina el nodo con la clave dada del árbol AVL.
+        """
         self.raiz = self._eliminar(self.raiz, clave)
 
     def _eliminar(self, nodo, clave):
+        """
+        Elimina recursivamente el nodo con la clave dada y realiza las rotaciones necesarias.
+        """
         if not nodo:
             return None
 
@@ -116,30 +160,44 @@ class ArbolAVL:
         return nodo
 
     def _min_nodo(self, nodo):
+        """
+        Retorna el nodo con la clave mínima en el subárbol dado.
+        """
         actual = nodo
         while actual.izquierda:
             actual = actual.izquierda
         return actual
     
     def _max_nodo(self, nodo):
+        """
+        Retorna el nodo con la clave máxima en el subárbol dado.
+        """
         actual = nodo
         while actual.derecha:
             actual = actual.derecha
         return actual
 
     def inorden(self):
+        """
+        Retorna una lista de los objetos almacenados en el árbol AVL en orden ascendente por clave.
+        """
         resultado = []
         self._inorden(self.raiz, resultado)
         return resultado
 
     def _inorden(self, nodo, resultado):
+        """
+        Recorre el subárbol en inorden y agrega los objetos a la lista resultado.
+        """
         if nodo:
             self._inorden(nodo.izquierda, resultado)
             resultado.append(nodo.objeto)
             self._inorden(nodo.derecha, resultado)
 
-    # En arbol_avl.py
     def imprimir(self, nodo=None, nivel=0, prefijo="Raíz: "):
+        """
+        Imprime el árbol AVL en consola de forma estructurada para depuración.
+        """
         if nodo is None:
             nodo = self.raiz
         if nodo is not None:
