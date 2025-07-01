@@ -13,9 +13,9 @@
   },
   {
     "id": 3,
-    "nombre": "play",
-    "precio": 499,
-    "descuento": 15
+    "nombre": "Play station",
+    "precio": 300,
+    "descuento": 5
   },
   {
     "id": 5,
@@ -25,12 +25,6 @@
   },
   {
     "id": 4,
-    "nombre": "Monitor",
-    "precio": 499,
-    "descuento": 15
-  },
-  {
-    "id": 6,
     "nombre": "Monitor",
     "precio": 499,
     "descuento": 15
