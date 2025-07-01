@@ -1,32 +1,32 @@
 [
   {
     "id": 1,
-    "nombre": "Monitor",
-    "precio": 499,
-    "descuento": 15
+    "nombre": "Monitor HD",
+    "precio": 450,
+    "descuento": 20
   },
   {
     "id": 2,
     "nombre": "consola",
-    "precio": 499,
-    "descuento": 15
+    "precio": 450,
+    "descuento": 20
   },
   {
     "id": 3,
-    "nombre": "Play station",
-    "precio": 300,
-    "descuento": 5
+    "nombre": "Monitor HD",
+    "precio": 450,
+    "descuento": 20
   },
   {
     "id": 5,
-    "nombre": "celular",
-    "precio": 499,
-    "descuento": 15
+    "nombre": "Xbox",
+    "precio": 450,
+    "descuento": 20
   },
   {
-    "id": 4,
-    "nombre": "Monitor",
-    "precio": 499,
-    "descuento": 15
+    "id": 6,
+    "nombre": "Monitor HD",
+    "precio": 450,
+    "descuento": 20
   }
 ]

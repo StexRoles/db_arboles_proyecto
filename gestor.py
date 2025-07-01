@@ -53,14 +53,17 @@ class GestorBD:
 
     def actualizar(self, clave, nuevos_datos):
         """
-        Actualiza los datos de un objeto existente con la clave dada, tanto en el árbol AVL
-        como en el archivo JSON. Lanza un error si el id no existe.
+        Actualiza los datos de un objeto existente con la clave dada,
+        eliminando primero el nodo antiguo del árbol para evitar duplicados.
         """
         objeto_actual = self.arbol.buscar(clave)
         if not objeto_actual:
             raise ValueError("ID no encontrado")
+
         objeto_actual.update(nuevos_datos)
-        self.arbol.insertar(clave, objeto_actual)  # Reinsertamos
+
+        self.arbol.eliminar(clave) 
+        self.arbol.insertar(clave, objeto_actual) 
         persistencia.actualizar_json(self.archivo, clave, objeto_actual)
 
     def listar(self):

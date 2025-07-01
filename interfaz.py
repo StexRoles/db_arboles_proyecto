@@ -86,19 +86,26 @@ class InterfazBD:
         self.resultado.insert(tk.END, json.dumps(obj, indent=2, ensure_ascii=False))
 
     def mostrar_tabla(self, registros):
-        # Limpiar columnas existentes
+        # Limpiar filas existentes
         self.tabla.delete(*self.tabla.get_children())
-        self.tabla['columns'] = ('id', 'nombre', 'precio', 'descuento')
+        # Detectar todas las claves únicas presentes en los registros
+        columnas = set()
+        for obj in registros:
+            columnas.update(obj.keys())
+        columnas = list(columnas)
+        # Opcional: ordenar columnas para que 'id' vaya primero si existe
+        if 'id' in columnas:
+            columnas.remove('id')
+            columnas = ['id'] + columnas
+        self.tabla['columns'] = columnas
+        # Configurar encabezados y columnas
         self.tabla.heading('#0', text='')
         self.tabla.column('#0', width=0, stretch=tk.NO)
-        self.tabla.heading('id', text='ID')
-        self.tabla.heading('nombre', text='Nombre')
-        self.tabla.heading('precio', text='Precio')
-        self.tabla.heading('descuento', text='Descuento')
-        self.tabla.column('id', width=60)
-        self.tabla.column('nombre', width=180)
-        self.tabla.column('precio', width=100)
-        self.tabla.column('descuento', width=100)
+        for col in columnas:
+            self.tabla.heading(col, text=col.capitalize())
+            self.tabla.column(col, width=120)
+        # Insertar los datos
         for obj in registros:
-            self.tabla.insert('', tk.END, values=(obj.get('id'), obj.get('nombre'), obj.get('precio'), obj.get('descuento')))
+            values = [obj.get(col, '') for col in columnas]
+            self.tabla.insert('', tk.END, values=values)
 
