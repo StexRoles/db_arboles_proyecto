@@ -1,42 +1,42 @@
 # Gestor de Base de Datos con Árbol AVL
 
-Este proyecto es una aplicación de escritorio en Python que permite gestionar una base de datos simple de productos utilizando un árbol AVL para garantizar búsquedas, inserciones y eliminaciones eficientes.
+Aplicación de escritorio en Python para gestionar bases de datos simples usando archivos JSON y árboles AVL para búsquedas eficientes. Incluye interfaz gráfica con Tkinter.
 
 ## Características
-- Inserción, búsqueda, eliminación y listado de productos.
-- Estructura de datos principal: Árbol AVL auto-balanceado.
-- Interfaz gráfica con Tkinter.
-- Persistencia de datos en archivo JSON.
+- Soporte para múltiples archivos de base de datos (cada uno gestionado por un árbol AVL).
+- Inserción, búsqueda, actualización, eliminación y listado de registros.
+- Creación y eliminación dinámica de archivos de base de datos.
+- Persistencia automática en archivos JSON.
+- Interfaz gráfica intuitiva.
 
 ## Estructura de los datos
-Cada producto tiene los siguientes campos:
+Cada registro/producto tiene:
 - `id` (int): Identificador único
-- `nombre` (str): Nombre del producto
-- `precio` (float/int): Precio del producto
+- `nombre` (str): Nombre
+- `precio` (float/int): Precio
 - `descuento` (float/int): Porcentaje de descuento
 
-## Requisitos
-- Python 3.x
-- Tkinter (incluido en la mayoría de instalaciones de Python)
-
-## Uso
-1. Ejecuta la aplicación principal (por ejemplo, desde un archivo `main.py` o directamente la interfaz):
-   ```bash
-   python interfaz.py
-   ```
-2. Utiliza los siguientes comandos en la interfaz:
-   - `insertar {"id": 1, "nombre": "Monitor", "precio": 499, "descuento": 15}`
-   - `buscar 1`
-   - `eliminar 1`
-   - `listar`
+## Comandos principales en la interfaz
+- `insertar archivo productos`  
+  Crea un nuevo archivo (ej: `1_productos.json`).
+- `insertar {"id": 1, "nombre": "Monitor", "precio": 499, "descuento": 15} en 1`  
+  Inserta un registro en el archivo con id 1.
+- `buscar 1 en 1`  
+  Busca el registro con id 1 en el archivo con id 1.
+- `actualizar {"id": 1, "nombre": "Monitor HD", "precio": 599, "descuento": 10} en 1`  
+  Actualiza el registro con id 1 en el archivo con id 1.
+- `eliminar 1 en 1`  
+  Elimina el registro con id 1 del archivo con id 1.
+- `listar 1`  
+  Lista todos los registros del archivo con id 1.
+- `eliminar archivo 1`  
+  Elimina el archivo con id 1.
 
 ## Archivos principales
-- `arbolavl.py`: Implementación del árbol AVL.
-- `gestor.py`: Lógica de gestión de la base de datos.
-- `persistencia.py`: Funciones para manejo de archivos JSON.
-- `interfaz.py`: Interfaz gráfica de usuario.
-- `datos.json`: Archivo de datos persistentes.
+- `arbolavl.py`: Árbol AVL.
+- `gestor.py`: Lógica de gestión de archivos y registros.
+- `gestor_multi.py`: Gestión multiarchivo.
+- `persistencia.py`: Manejo de archivos JSON.
+- `interfaz.py`: Interfaz gráfica.
 
 ---
-
-Proyecto realizado para fines educativos y de práctica de estructuras de datos avanzadas en Python.
